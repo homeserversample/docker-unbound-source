@@ -1,11 +1,24 @@
 FROM ubuntu:latest
 
-COPY apts.sh /tmp
-RUN /tmp/apts.sh
+# get dependencies
+RUN apt-get update -y
+RUN apt-get upgrade -y
+RUN apt-get install git -y
+RUN apt-get install build-essential -y
+RUN apt-get install flex -y
+RUN apt-get install bison -y
+RUN apt-get install libssl-dev -y
+RUN apt-get install libexpat1-dev -y
 
-COPY buildunbound.sh /tmp
-RUN /tmp/buildunbound.sh
+# get the unbound source
+WORKDIR /tmp
+RUN git clone https://github.com/NLnetLabs/unbound.git 
+
+# build and install unbound from source
+WORKDIR /tmp/unbound
+RUN ./configure 
+RUN make 
+RUN make install
 
 # adduser unbound because unbound wants to run as user unbound
-COPY adduser.sh /tmp
-RUN /tmp/adduser.sh unbound
+RUN adduser --disabled-password --gecos '' unbound
