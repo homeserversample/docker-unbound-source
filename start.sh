@@ -4,8 +4,7 @@ sudo docker run                                    \
     -d                                             \
     -it                                            \
     --rm                                           \
-    -p 5335:5335/tcp                               \
-    -p 5335:5335/udp                               \
+    --network host                                 \
     --cap-add NET_ADMIN                            \
     -v ./conf:/conf                                \
     docker.io/homeserversample/unbound             \
