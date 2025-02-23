@@ -7,4 +7,4 @@ sudo docker run --detach                                 \
                 --cap-add NET_ADMIN                      \
                 --volume ./conf:/conf                    \
                 docker.io/homeserversample/unbound       \
-                    unbound -d -c /conf/pi-hole.conf
+                    unbound -d -c /conf/localhost.conf
