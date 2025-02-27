@@ -1,8 +1,10 @@
 FROM ubuntu:latest
 
-# get dependencies
+# bring the system up to date
 RUN apt-get update -y
 RUN apt-get upgrade -y
+
+# get dependencies
 RUN apt-get install git -y
 RUN apt-get install build-essential -y
 RUN apt-get install flex -y
